@@ -5,10 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
     <title>Ceneo.pl Web Scraper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header id="menu-bar">
         <h1>Ceneo.pl Web Scraper</h1>
+        <nav>
+            {% block menu_links %}
+                
+            {% endblock menu_links %}
+        </nav>
     </header>
     <section>
         {% block content %}

@@ -1,3 +1,49 @@
-h1{
-    color: rgba(25, 0, 255, 0.534);
+body{
+    background-color: #F4F2F3;
+    font-family: 'Space Grotesk';
+}
+section{
+    background-color: #D3B88C;
+    padding: 10px 20px;
+    margin: 2.5em 1em;
+    color: #230903;
+}
+#menu-bar{
+    background-color: #9EBC9F;
+    padding: 0.5em 1em;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#menu-bar h1{
+    color: #230903;
+    font-family: 'Teachers';
+    display: inline;
+    align-self: flex-start;
+}
+#menu-bar nav{
+    display: flex;
+    width: 60%;
+    justify-content: space-around;
+    font-size: 30px;
+}
+#menu-bar nav a{
+    display: inline;
+    transition: 0.3s;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #656256;
+}
+#menu-bar nav a:hover{
+    color: #230903;
+    font-weight: 700;
+}
+footer{
+    background-color: #656256;
+    color: #F4F2F3;
+    text-align: center;
+    width: 35em;
+    margin: auto;
+    padding: 0.3em;
 }
