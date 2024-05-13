@@ -11,6 +11,7 @@ section{
 #menu-bar{
     background-color: #9EBC9F;
     padding: 0.5em 1em;
+    margin: 10px 10px;
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -18,9 +19,18 @@ section{
 }
 #menu-bar h1{
     color: #230903;
-    font-family: 'Teachers';
     display: inline;
     align-self: flex-start;
+    font-family: 'Teachers';
+    font-weight: 600;
+}
+#menu-bar h1 a{
+    color: #230903;
+    transition: 0.3s;
+    text-decoration: none;
+}
+#menu-bar h1 a:hover{
+    color: #F4F2F3;
 }
 #menu-bar nav{
     display: flex;

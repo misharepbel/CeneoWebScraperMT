@@ -2,3 +2,8 @@
 {% block content %}
     <p>To jest strona główna.</p>
 {% endblock content %}
+{% block menu_links %}
+    <a href="{{url_for('author')}}">Autor</a>
+    <a href="{{url_for('extract')}}">Ekstrakcja</a>
+    <a href="{{url_for('products')}}">Produkty</a>
+{% endblock menu_links %}
