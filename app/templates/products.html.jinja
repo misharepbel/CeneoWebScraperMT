@@ -1,6 +1,9 @@
 {% extends "base.html.jinja" %}
+{% block title %}
+    Lista produktów
+{% endblock title %}
 {% block content %}
-    <p>To jest strona wszystkich produktów.</p>
+    {{products}}
 {% endblock content %}
 {% block menu_links %}
     <a href="{{url_for('author')}}">Autor</a>
