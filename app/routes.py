@@ -1,4 +1,5 @@
 from app import app
+from app import utils
 import io
 import os
 import json
@@ -6,7 +7,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
 import requests
-from app import utils
+import xlsxwriter
 from bs4 import BeautifulSoup
 from flask import render_template, request, redirect, send_file, url_for
 
@@ -32,6 +33,7 @@ def extract():
                     product_name = utils.extract_data(page_dom, "h1")
                     response = requests.get(url)
                     page_dom = BeautifulSoup(response.text, "html.parser")
+                    img_link = page_dom.select_one("img.js_gallery-media")["src"]
                     opinions = page_dom.select("div.js_product-review")
                     for opinion in opinions:
                         single_opinion = {
@@ -54,6 +56,7 @@ def extract():
                     product = {
                         'product_id' : product_id,
                         'product_name' : product_name,
+                        'img_link': img_link,
                         'opinions_count' : opinions.shape[0],
                         'pros_count' : int(opinions.pros.astype(bool).sum()),
                         'cons_count' : int(opinions.cons.astype(bool).sum()),
@@ -86,7 +89,11 @@ def author():
 
 @app.route('/product/<product_id>')
 def product(product_id):
-    return render_template("product.html.jinja", product_id=product_id)
+    with open(f"app/data/products/{product_id}.json", "r", encoding="UTF-8") as jsonf:
+        product_data = (json.load(jsonf))
+        with open(f"app/data/opinions/{product_id}.json", "r", encoding="UTF-8") as jsonf2:
+            product_opinions = (json.load(jsonf2))
+            return render_template("product.html.jinja", product_id=product_id, product_data=product_data, product_opinions=product_opinions)
 
 @app.route('/product/download_json/<product_id>')
 def download_json(product_id):
@@ -100,5 +107,9 @@ def download_csv(product_id):
 
 @app.route('/product/download_xlsx/<product_id>')
 def download_xlsx(product_id):
-    #return send_file(buffer, "text/xlsx", as_attachment = True, download_name=f"{product_id}.xlsx")
-    pass
+    opinions  =  pd.read_json(f"app/data/opinions/{product_id}.json")
+    buffer = io.BytesIO()
+    with pd.ExcelWriter(buffer, engine='xlsxwriter') as to_exc:
+        opinions.to_excel(to_exc, index=False, sheet_name=f"{product_id}")
+    buffer.seek(0)
+    return send_file(buffer, mimetype="application/vnd.ms-excel", as_attachment = True, download_name=f"{product_id}.xlsx")

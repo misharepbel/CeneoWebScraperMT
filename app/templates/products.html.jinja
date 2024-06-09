@@ -3,7 +3,25 @@
     Lista produktów
 {% endblock title %}
 {% block content %}
-    {{products}}
+    {% for product in products %}
+        <section class="products-individual">
+        <h3> <a href="{{url_for('product', product_id=product.get('product_id'))}}">{{product.get("product_name")}}</a> </h3>
+        <div class="products-individual-grid">
+            <ul>
+                <li id="op-cnt">Liczba opinii: {{product.get("opinions_count")}}</li>
+                <li id="pr-cnt">Liczba zalet: {{product.get("pros_count")}}</li>
+                <li id="co-cnt">Liczba wad: {{product.get("cons_count")}}</li>
+                <li id="av-rat">Średnia ocena: {{"%.3f" % product.get("average_rating")}}</li>
+            </ul>
+            <div>
+                <a href="{{url_for('download_json', product_id=product.get('product_id'))}}"><button style="background-color: yellow;">Pobierz JSON</button></a>
+                <a href="{{url_for('download_csv', product_id=product.get('product_id'))}}"><button style="background-color: greenyellow;">Pobierz CSV</button></a>
+                <a href="{{url_for('download_xlsx', product_id=product.get('product_id'))}}"><button style="background-color: green; color: #F4F2F3">Pobierz XLSX</button></a>
+            </div>
+            <img src="{{product.get('img_link')}}">
+        </div>
+        </section>
+    {% endfor %}
 {% endblock content %}
 {% block menu_links %}
     <a href="{{url_for('author')}}">Autor</a>

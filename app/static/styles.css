@@ -3,13 +3,30 @@ body{
     font-family: 'Space Grotesk';
 }
 section{
-    background-color: #D3B88C;
+    background-color: #d3b88c;
     padding: 10px 20px;
-    margin: 2.5em 1em;
+    margin: 2.5em auto;
     color: #230903;
+    border-radius: 15px;
+    width: 85%;
+}
+section.products-individual{
+    width: 60%
+}
+section.products-individual h3 {
+    text-align: center;
+}
+section.products-individual h3 a{
+    color: #230903;
+    text-decoration: none;
+    transition: 0.3s;
+}
+section.products-individual h3 a:hover{
+    font-weight: 700;
+    color: #656256;
 }
 #menu-bar{
-    background-color: #9EBC9F;
+    background-color: #9ebc9f;
     padding: 0.5em 1em;
     margin: 10px 10px;
     border-radius: 15px;
@@ -49,11 +66,68 @@ section{
     color: #230903;
     font-weight: 700;
 }
+.products-individual-grid{
+    display: grid;
+}
+.products-individual-grid ul{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    font-size: 18px;
+}
+.products-individual-grid ul li{
+    padding-left: 2px;
+}
+#op-cnt::marker{
+    content: "📬";
+    margin-right: 40px;
+}
+#pr-cnt::marker{
+    content: "🙂";
+}
+#co-cnt::marker{
+    content: "☹️";
+}
+#av-rat::marker{
+    content: "📊";
+}
+.products-individual-grid div{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row: 2 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.products-individual-grid div a button{
+    font-size: large;
+    border-color: #230903;
+    color: #230903;
+    transition: 0.3s;
+}
+.products-individual-grid div a button:hover{
+    font-size: larger;
+    font-weight: 700;
+}
+.products-individual-grid img{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    margin-bottom: 9px;
+    grid-row: 1 / span 2;
+}
+.extract-submit{
+    background-color: #9EBC9F;
+    color: #230903;
+    transition: 0.1s;
+}
+.extract-submit:hover{
+    background-color: #F4F2F3;
+    font-weight: 700;
+}
 footer{
     background-color: #656256;
     color: #F4F2F3;
     text-align: center;
     width: 35em;
-    margin: auto;
+    margin: 5px auto;
     padding: 0.3em;
 }

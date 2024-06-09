@@ -1,9 +1,33 @@
 {% extends "base.html.jinja" %}
 {% block title %}
-    Produkt {{product_id}}
+    {{product_data.get("product_name")}}
 {% endblock title %}
 {% block content %}
-    <p>To jest strona z opiniami o produkcie {{product_id}}.</p>
+    <section style="width: 25%; background-color: #00000000">
+        <h5 style="margin: auto; text-align: center;">ID produktu: {{product_id}}</h5>
+    </section>
+    <section>
+    <table id="opinions-table" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                {% for title in product_opinions[0].keys() %}
+                    <td>
+                        {{title}}
+                    </td>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody >
+            {% for opinion in product_opinions %}
+                <tr>
+                    {% for value in opinion.values() %}
+                        <td>{{value}}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </section>
 {% endblock content %}
 {% block menu_links %}
     <a href="{{url_for('author')}}">Autor</a>
