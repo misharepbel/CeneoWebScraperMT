@@ -131,3 +131,8 @@ footer{
     margin: 5px auto;
     padding: 0.3em;
 }
+.table-responsive{
+    max-height: 1000px;
+    padding: 0px;
+    border-radius: 0px;
+}
